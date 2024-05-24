@@ -1,0 +1,422 @@
+@charset "UTF-8";
+/* Нормализация шрифтов */
+/**
+  Нормализация блочной модели
+ */
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap");
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/**
+   Убираем внутренние отступы слева тегам списков,
+   у которых есть атрибут class
+  */
+:where(ul, ol):where([class]) {
+  padding-left: 0;
+}
+
+/**
+   Убираем внешние отступы body и двум другим тегам,
+   у которых есть атрибут class
+  */
+body,
+:where(blockquote, figure):where([class]) {
+  margin: 0;
+}
+
+/**
+   Убираем внешние отступы вертикали нужным тегам,
+   у которых есть атрибут class
+  */
+:where(h1, h2, h3, h4, h5, h6, p, ul, ol, dl):where([class]) {
+  margin-block: 0;
+}
+
+:where(dd[class]) {
+  margin-left: 0;
+}
+
+:where(fieldset[class]) {
+  margin-left: 0;
+  padding: 0;
+  border: none;
+}
+
+/**
+   Убираем стандартный маркер маркированному списку,
+   у которого есть атрибут class
+  */
+:where(ul[class]) {
+  list-style: none;
+}
+
+/**
+   Обнуляем вертикальные внешние отступы параграфа,
+   объявляем локальную переменную для внешнего отступа вниз,
+   чтобы избежать взаимодействие с более сложным селектором
+  */
+p {
+  --paragraphMarginBottom: 24px;
+  margin-block: 0;
+}
+
+/**
+   Внешний отступ вниз для параграфа без атрибута class,
+   который расположен не последним среди своих соседних элементов
+  */
+p:where(:not([class]):not(:last-child)) {
+  margin-bottom: var(--paragraphMarginBottom);
+}
+
+/**
+   Упрощаем работу с изображениями
+  */
+img {
+  display: block;
+  max-width: 100%;
+}
+
+/**
+   Наследуем свойства шрифт для полей ввода
+  */
+input,
+textarea,
+select,
+button {
+  font: inherit;
+}
+
+html {
+  /**
+     Пригодится в большинстве ситуаций
+     (когда, например, нужно будет "прижать" футер к низу сайта)
+    */
+  height: 100%;
+  /**
+     Плавный скролл
+    */
+  scroll-behavior: smooth;
+}
+
+body {
+  /**
+     Пригодится в большинстве ситуаций
+     (когда, например, нужно будет "прижать" футер к низу сайта)
+    */
+  min-height: 100%;
+  /**
+     Унифицированный интерлиньяж
+    */
+  line-height: 1.5;
+}
+
+/**
+   Приводим к единому цвету svg-элементы
+  */
+svg *[fill] {
+  fill: currentColor;
+}
+
+svg *[stroke] {
+  stroke: currentColor;
+}
+
+/**
+   Чиним баг задержки смены цвета при взаимодействии с svg-элементами
+  */
+svg * {
+  transition-property: fill, stroke;
+}
+
+/**
+   Удаляем все анимации и переходы для людей,
+   которые предпочитают их не использовать
+  */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+@font-face {
+  font-family: "Proxima Nova Rg";
+  src: url("../fonts/ProximaNova-Regular.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Proxima Nova Rg";
+  src: url("../fonts/ProximaNova-Bold.woff2") format("woff2");
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+:root {
+  --color-dark:#262C40;
+  --color-light:#FFFFFF;
+  --color-alt:#8189A3;
+  --svg-color:#432EAB;
+  --input-height:48px;
+  --border-radius: 16px;
+  --border-radius-large: 24px;
+  --container-padding-x:25px;
+  --shadow:inset 3px 3px 6px #EEE5E9;
+  --section-padding-y:32px;
+  --body-with-container: 1280px;
+  --container-width:1120px;
+  --font-family-base:"Proxima Nova Rg", sans-serif;
+}
+
+.container {
+  max-width: calc(var(--container-width) + var(--container-padding-x) * 2);
+  padding-inline: var(--container-padding-x);
+  margin-inline: auto;
+}
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  margin: -1px !important;
+  border: 0 !important;
+  padding: 0 !important;
+  white-space: nowrap !important;
+  clip-path: inset(100%) !important;
+  clip: rect(0 0 0 0) !important;
+  overflow: hidden !important;
+}
+
+body {
+  font-family: var(--font-family-base);
+  color: var(--color-dark);
+  margin-inline: auto;
+  height: 100vh;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-weight: 400;
+  margin: 0px;
+}
+
+.section {
+  padding-block: var(--section-padding-y);
+}
+
+.header {
+  padding-top: 64px;
+}
+.header__search {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-inline: 24px;
+  height: var(--input-height);
+  background-color: transparent;
+  border: 1px solid #D4DEFE;
+  border-radius: var(--border-radius-large);
+}
+
+.search__input {
+  height: var(--input-height);
+  padding-inline: 24px;
+  width: 100%;
+  background-color: transparent;
+  border: none;
+  color: var(--color-dark);
+}
+.search__input__btn {
+  background-color: transparent;
+  border: none;
+}
+.search__input__img {
+  cursor: pointer;
+}
+.search__input:focus {
+  border: none;
+  outline: none;
+  box-shadow: none; /* Убирает тень вокруг инпута */
+}
+.search__input:hover {
+  border: none;
+  outline: none;
+}
+
+.card {
+  width: 100%;
+  max-width: 357px;
+  min-width: 357px;
+  min-height: 314px;
+  border-radius: var(--border-radius);
+  box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.1019607843);
+  background-color: inherit;
+  padding: 24px;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 400;
+  color: #8189A3;
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out;
+}
+.card:hover {
+  transform: scale(1.1);
+}
+.card__content {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  row-gap: 24px;
+}
+.card svg {
+  color: var(--svg-color);
+}
+.card__title {
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 30px;
+  color: var(--color-dark);
+}
+@media (max-width: 1150px) {
+  .card {
+    max-width: 100%;
+  }
+}
+@media (max-width: 767px) {
+  .card {
+    max-width: 100%;
+  }
+}
+
+.card__info__list {
+  display: flex;
+  flex-direction: column;
+  row-gap: 12px;
+}
+.card__info__item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.cards {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  grid-template-columns: repeat(3, 1fr); /* три столбца одинаковой ширины */
+  gap: 25px; /* отступ между карточками */
+}
+@media (max-width: 1150px) {
+  .cards {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    justify-items: center;
+  }
+}
+@media (max-width: 767px) {
+  .cards {
+    grid-template-columns: repeat(1, 1fr);
+    gap: 10px;
+    justify-items: center;
+  }
+}
+
+.drawer {
+  font-size: 16px;
+  line-height: 18px;
+  backdrop-filter: blur(50px);
+  -webkit-backdrop-filter: blur(50px);
+  width: 100%;
+  max-width: 500px;
+  background-color: white;
+  border-radius: var(--border-radius);
+  box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.1019607843);
+  padding: 24px;
+  color: var(--color-dark);
+}
+.drawer__title {
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.drawer__info {
+  margin-top: 40px;
+}
+.drawer__info__list {
+  border-collapse: collapse;
+  width: 100%;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 24px;
+}
+.drawer__info__item td {
+  padding: 7px 20px; /* Примерный отступ для ячеек */
+  font-weight: 400; /* Примерный вес шрифта для ячеек */
+}
+.drawer__description {
+  display: flex;
+  flex-direction: column;
+  row-gap: 12px;
+  margin-top: 40px;
+}
+.drawer__description__title {
+  font-size: 18px; /* Устанавливаем размер заголовка */
+}
+.drawer__description__info {
+  font-size: 16px;
+  line-height: 18px;
+  font-weight: 400px;
+  color: #8189A3;
+}
+
+.close_button {
+  padding: 0;
+  background-color: transparent;
+  border: none;
+  width: 30px;
+  aspect-ratio: 1;
+  position: relative;
+  cursor: pointer;
+}
+.close_button__wrapper {
+  display: flex;
+  align-items: center;
+}
+.close_button::before, .close_button::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 7px;
+  width: 70%;
+  height: 2px;
+  background-color: black;
+  border-radius: 70px;
+}
+.close_button::before {
+  rotate: 45deg;
+}
+.close_button::after {
+  rotate: -45deg;
+}
+
+.alt__color {
+  font-weight: 400px;
+  font-size: 16px;
+  line-height: 24px;
+  color: #8189A3;
+}/*# sourceMappingURL=styles.css.map */

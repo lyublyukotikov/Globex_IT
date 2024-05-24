@@ -1,0 +1,13 @@
+.card__info{
+  &__list{
+    display: flex;
+    flex-direction: column;
+    row-gap:12px ;
+  }
+  &__item{
+    display: flex;
+    align-items: center;
+    gap:14px ;
+  }
+  
+}

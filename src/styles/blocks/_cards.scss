@@ -1,0 +1,21 @@
+.cards {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  grid-template-columns: repeat(3, 1fr); /* три столбца одинаковой ширины */
+  gap: 25px; /* отступ между карточками */
+  
+  @include tablet {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    justify-items: center;
+
+  }
+  @include mobile {
+    grid-template-columns: repeat(1, 1fr);
+    gap: 10px;
+    justify-items: center;
+ 
+ 
+  }
+}

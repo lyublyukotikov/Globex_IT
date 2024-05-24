@@ -1,0 +1,30 @@
+.search {
+  &__input {
+    height: var(--input-height);
+    padding-inline: 24px;
+    width: 100%;
+    background-color: transparent;
+    border: none;
+    color: var(--color-dark);
+
+    &__btn {
+      background-color: transparent;
+      border: none;
+    }
+
+    &__img {
+      cursor: pointer;
+    }
+
+    &:focus {
+      border: none;
+      outline: none;
+      box-shadow: none; /* Убирает тень вокруг инпута */
+    }
+
+    &:hover {
+      border: none;
+      outline: none;
+    }
+  }
+}

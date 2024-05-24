@@ -1,0 +1,15 @@
+.header{
+ padding-top:64px;
+
+ &__search{
+
+display: flex;
+align-items: center;
+justify-content: space-between;
+padding-inline: 24px;
+height: var(--input-height);
+background-color: transparent;
+border: 1px solid #D4DEFE ;
+border-radius: var(--border-radius-large);
+}
+}

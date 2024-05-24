@@ -1,0 +1,4 @@
+@import "./styles/normalize", "./styles/fonts","./styles/mixins",
+  "./styles/media", "./styles/variables", "./styles/utils", "./styles/globals";
+
+@import "./styles/blocks/section","./styles/blocks/header","./styles/blocks/search","./styles/blocks/card","./styles/blocks/card__info","./styles/blocks/cards","./styles/blocks/drawer","./styles/blocks/close_button","./styles/blocks/alt__color";
