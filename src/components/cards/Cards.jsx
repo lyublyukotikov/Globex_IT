@@ -66,23 +66,19 @@ const Cards = ({ openDrawer }) => {
           ) : (
             <>
               {searchUsers.length > 0 ? (
-                <>
-                  <div className="cards">
-                    {searchUsers.map((user, index) => (
-                      <Card
-                        key={index}
-                        openDrawer={() => openDrawer(user)}
-                        {...user}
-                      />
-                    ))}
-                  </div>
-                </>
+                <div className="cards">
+                  {searchUsers.map((user, index) => (
+                    <Card
+                      key={index}
+                      openDrawer={() => openDrawer(user)}
+                      {...user}
+                    />
+                  ))}
+                </div>
               ) : searchValue ? (
-                <>
-                  <h2 className="alt__color">Ничего не найдено</h2>
-                </>
+                <h2 className="alt__color">Ничего не найдено</h2>
               ) : (
-                <>
+                <div className="cards">
                   {users.map((user, index) => (
                     <Card
                       key={index}
@@ -90,7 +86,7 @@ const Cards = ({ openDrawer }) => {
                       {...user}
                     />
                   ))}
-                </>
+                </div>
               )}
             </>
           )}

@@ -3,42 +3,44 @@ import Home from "./Pages/Home";
 import AppContext from "./context";
 import React from "react";
 import axios from "axios";
+
 function App() {
-  //храним юзеров
+  // храним юзеров
   const [users, setUsers] = React.useState([]);
-  // храним что нашел
-  // хоаним состояние загрузки
+  // храним состояние загрузки
   const [isLoading, setIsLoading] = React.useState(true);
   // храним состояние юзеров которых мы нашли
   const [searchUsers, setSearchUser] = React.useState([]);
   const [searchValue, setSearchValue] = React.useState("");
+
   // Функция для изменения значения поиска
-  const onChangeSearchInput = async (value) => {
-    setIsLoading(true);
+  const onChangeSearchInput = (value) => {
     setSearchValue(value);
-    try {
-      const searchResponse = await axios.get(`http://[::1]:3000?term=${value}`);
-      setSearchUser(searchResponse.data); // Сохраняем полученные данные пользователя
-    } catch (error) {
-      console.error("Ошибка при получении данных пользователя:", error);
-    } finally {
-      setIsLoading(false);
+
+    if (value) {
+      const filteredUsers = users.filter((user) =>
+        user.name.toLowerCase().includes(value.toLowerCase())
+      );
+      setSearchUser(filteredUsers);
+    } else {
+      setSearchUser([]);
     }
   };
-  console.log(searchUsers);
 
   React.useEffect(() => {
     async function fetchData() {
       setIsLoading(true);
-      const usersResponse = await axios.get("http://[::1]:3000/");
+      const usersResponse = await axios.get("https://6659bbebde346625136db5e1.mockapi.io/users");
+      console.log(usersResponse);
       setIsLoading(false);
       setUsers(usersResponse.data);
     }
     fetchData();
   }, []);
+
   return (
     <AppContext.Provider
-      value={{ users, searchUsers, onChangeSearchInput, searchValue }}
+      value={{ users, searchUsers, onChangeSearchInput, searchValue, isLoading }}
     >
       <div>
         <Routes>

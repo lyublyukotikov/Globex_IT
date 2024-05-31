@@ -4,7 +4,7 @@ import SearchImg from "../../assets/search-btn.svg";
 import AppContext from "../../context";
 
 function Search() {
-  const { searchValue, searchUsers, onChangeSearchInput } =
+  const { searchValue,  onChangeSearchInput } =
     React.useContext(AppContext);
 
   // Локальное состояние для отслеживания ввода
