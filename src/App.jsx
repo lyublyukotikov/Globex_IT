@@ -1,5 +1,5 @@
 import { Route, Routes } from "react-router-dom";
-import Home from "./Pages/Home";
+import Home from "../src/Pages/Home.jsx";
 import AppContext from "./context";
 import React from "react";
 import axios from "axios";
