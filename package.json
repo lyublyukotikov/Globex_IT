@@ -2,10 +2,10 @@
   "name": "globex-it",
   "private": true,
   "version": "0.0.0",
-  "homepage":"https://lyublyukotikov.github.io/Globex_IT/",
+  "homepage": "https://lyublyukotikov.github.io/Globex_IT/",
   "type": "module",
   "scripts": {
-    "predeploy":"npm run build",
+    "predeploy": "npm run build",
     "deploy": "gh-pages -d dist",
     "dev": "vite",
     "build": "vite build",
@@ -28,6 +28,7 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.6",
     "gh-pages": "^6.1.1",
-    "vite": "^5.2.0"
+    "vite": "^5.2.0",
+    "vite-plugin-html": "^3.2.2"
   }
 }
