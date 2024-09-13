@@ -1,3 +1,5 @@
+https://lyublyukotikov.github.io/Globex_IT/
+
 Это клиентская часть тестового задания: git clone
 
 Перейдите в каталог проекта 
